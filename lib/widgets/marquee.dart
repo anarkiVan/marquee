@@ -44,9 +44,9 @@ class _MarqeeState extends State<Marqee> {
   void _initAnimation() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       while (true) {
-        await Future<dynamic>.delayed(widget.animationDelay);
+        await _initiateDelay();
         await _scrollTextToRight();
-        await Future<dynamic>.delayed(widget.animationDelay);
+        await _initiateDelay();
         await _scrollTextToLeft();
       }
     });
@@ -63,5 +63,9 @@ class _MarqeeState extends State<Marqee> {
   Future _scrollText(double position) {
     return _scrollController.animateTo(position,
         duration: widget.animationDuration, curve: Curves.easeOutCubic);
+  }
+
+  Future _initiateDelay() {
+    return Future<dynamic>.delayed(widget.animationDelay);
   }
 }
