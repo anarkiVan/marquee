@@ -45,16 +45,23 @@ class _MarqeeState extends State<Marqee> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       while (true) {
         await Future<dynamic>.delayed(widget.animationDelay);
-        await _scrollController.animateTo(
-            _scrollController.position.maxScrollExtent,
-            duration: widget.animationDuration,
-            curve: Curves.easeOutCubic);
+        await _scrollTextToRight();
         await Future<dynamic>.delayed(widget.animationDelay);
-        await _scrollController.animateTo(
-            _scrollController.position.minScrollExtent,
-            duration: widget.animationDuration,
-            curve: Curves.easeOutCubic);
+        await _scrollTextToLeft();
       }
     });
+  }
+
+  Future _scrollTextToLeft() {
+    return _scrollText(_scrollController.position.minScrollExtent);
+  }
+
+  Future _scrollTextToRight() {
+    return _scrollText(_scrollController.position.maxScrollExtent);
+  }
+
+  Future _scrollText(double position) {
+    return _scrollController.animateTo(position,
+        duration: widget.animationDuration, curve: Curves.easeOutCubic);
   }
 }
