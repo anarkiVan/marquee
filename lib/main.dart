@@ -30,12 +30,14 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Container(
-            width: MediaQuery.of(context).size.width / 2,
-            child: Marqee(
-              text: animatedText,
-              animationDuration: Duration(seconds: 5),
-              animationDelay: Duration(seconds: 1),
-            )),
+          width: MediaQuery.of(context).size.width / 2,
+          child: Marqee(
+            text: animatedText,
+            animationDuration: Duration(seconds: 5),
+            symbolsPerDurationTime: 50,
+            animationDelay: Duration(seconds: 1),
+          ),
+        ),
       ),
     );
   }
